@@ -31,6 +31,8 @@ $router->group(
 
         $router->get('/me', ['uses' => 'AuthController@show']);
         $router->get('/my-agency', ['uses' => 'AgencyController@index']);
+
+        $router->post('/survey-agencies', ['uses' => 'SurveyAgenciesController@store']);
     }
 );
 

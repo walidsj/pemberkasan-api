@@ -7,14 +7,16 @@ use App\Models\File;
 class FilesController extends Controller
 {
     /**
-     * Menampilkan daftar instansi keseluruhan program studi
+     * Menampilkan daftar file keseluruhan program studi
      */
     public function index()
     {
         return response()->json([
             'success' => true,
             'message' => 'File list found.',
-            'data' => File::orderBy('name')->get()->makeHidden(['created_at', 'updated_at'])
+            'data' => File::orderBy('name')->get()->makeHidden([
+                'id', 'description', 'detail', 'example1', 'example2', 'created_at', 'updated_at'
+            ])
         ]);
     }
 }

@@ -24,6 +24,7 @@ $router->get('/', ['uses' => 'Controller@welcome']);
 $router->post('/login', ['uses' => 'AuthController@login']);
 
 $router->get('/agencies', ['uses' => 'AgenciesController@index']);
+$router->get('/files', ['uses' => 'FilesController@index']);
 
 $router->group(
     ['middleware' => 'jwt'],

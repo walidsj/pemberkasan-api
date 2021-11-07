@@ -25,20 +25,33 @@ class SurveyAgenciesController extends Controller
         $survey_agencies->third_agency_id = $request->third_agency_id;
         $survey_agencies->save();
 
+        $data = SurveyAgency::with(['first_agency', 'second_agency', 'third_agency'])
+            ->findOrFail($survey_agencies->id)
+            ->makeHidden(['id', 'first_agency_id', 'second_agency_id', 'third_agency_id', 'created_at', 'updated_at']);
+        $data->first_agency->makeHidden(['group_link', 'created_at', 'updated_at']);
+        $data->second_agency->makeHidden(['group_link', 'created_at', 'updated_at']);
+        $data->third_agency->makeHidden(['group_link', 'created_at', 'updated_at']);
+
         return response()->json([
             'success' => true,
             'message' => 'Survei berhasil disimpan.',
-            'data' => $survey_agencies->makeHidden(['id', 'created_at', 'updated_at'])
+            // 'data' => $survey_agencies->with(['first_agency', 'second_agency', 'third_agency'])
+            //     ->makeHidden(['id', 'created_at', 'updated_at'])
+            'data' => $data
         ]);
     }
 
     public function me(Request $request)
     {
+        $data = SurveyAgency::with(['first_agency', 'second_agency', 'third_agency'])->whereUserId($request->auth->id)->firstOrFail()->makeHidden(['id', 'first_agency_id', 'second_agency_id', 'third_agency_id', 'created_at', 'updated_at']);
+        $data->first_agency->makeHidden(['group_link', 'created_at', 'updated_at']);
+        $data->second_agency->makeHidden(['group_link', 'created_at', 'updated_at']);
+        $data->third_agency->makeHidden(['group_link', 'created_at', 'updated_at']);
 
         return response()->json([
             'success' => true,
             'message' => 'Survei ditemukan.',
-            'data' => SurveyAgency::whereUserId($request->auth->id)->firstOrFail()->makeHidden(['id', 'created_at', 'updated_at'])
+            'data' => $data
         ]);
     }
 }

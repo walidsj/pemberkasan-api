@@ -44,7 +44,9 @@ class JwtMiddleware
             ], 400);
         }
 
-        $user = User::findOrFail($credentials->sub);
+        $user = User::with(['agency', 'major'])->findOrFail($credentials->sub)->makeHidden(['agency_id', 'major_id']);
+        $user->agency->makeHidden(['created_at', 'updated_at']);
+        $user->major->makeHidden(['created_at', 'updated_at']);
 
         // Now let's put the user in the request class so that you can grab it from there
         $request->auth = $user;

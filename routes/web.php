@@ -2,6 +2,8 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use Illuminate\Support\Facades\Artisan;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -28,5 +30,18 @@ $router->group(
     function () use ($router) {
 
         $router->get('/me', ['uses' => 'AuthController@show']);
+        $router->get('/my-agency', ['uses' => 'AgencyController@index']);
     }
 );
+
+
+
+
+
+$router->get('/migrate', function () {
+    return Artisan::call('migrate');
+});
+
+$router->get('/migrate/rollback', function () {
+    return Artisan::call('migrate:rollback');
+});

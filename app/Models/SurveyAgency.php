@@ -27,4 +27,19 @@ class SurveyAgency extends Model
      * @var array
      */
     protected $hidden = [];
+
+    public function first_agency()
+    {
+        return $this->belongsTo(Agency::class, 'first_agency_id', 'id');
+    }
+
+    public function second_agency()
+    {
+        return $this->belongsTo(Agency::class, 'second_agency_id', 'id');
+    }
+
+    public function third_agency()
+    {
+        return $this->belongsTo(Agency::class, 'third_agency_id', 'id');
+    }
 }

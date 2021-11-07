@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Agency;
 use App\Models\SurveyAgency;
 use Illuminate\Http\Request;
 
@@ -29,7 +28,17 @@ class SurveyAgenciesController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Survei berhasil disimpan.',
-            'data' => $survey_agencies
+            'data' => $survey_agencies->makeHidden(['id', 'created_at', 'updated_at'])
+        ]);
+    }
+
+    public function me(Request $request)
+    {
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Survei ditemukan.',
+            'data' => SurveyAgency::whereUserId($request->auth->id)->firstOrFail()->makeHidden(['id', 'created_at', 'updated_at'])
         ]);
     }
 }

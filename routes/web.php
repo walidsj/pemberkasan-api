@@ -30,9 +30,10 @@ $router->group(
     function () use ($router) {
 
         $router->get('/me', ['uses' => 'AuthController@show']);
-        $router->get('/my-agency', ['uses' => 'AgencyController@index']);
+        $router->get('/my/agency', ['uses' => 'AgencyController@index']);
 
         $router->post('/survey-agencies', ['uses' => 'SurveyAgenciesController@store']);
+        $router->get('/my/survey-agency', ['uses' => 'SurveyAgenciesController@me']);
     }
 );
 

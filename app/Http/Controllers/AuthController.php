@@ -24,7 +24,7 @@ class AuthController extends Controller
             'sub' => $user->id,
             'name' => $user->name,
             'email' => $user->email,
-            'agency' => $user->agency->makeHidden(['created_at', 'updated_at']),
+            // 'agency' => $user->agency->makeHidden(['created_at', 'updated_at']),
             'major' => $user->major->makeHidden(['created_at', 'updated_at']),
             'role' => $user->role,
             'created_at' => Carbon::parse($user->created_at)->timestamp,

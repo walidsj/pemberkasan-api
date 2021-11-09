@@ -19,4 +19,15 @@ class FilesController extends Controller
             ])
         ]);
     }
+
+    public function show($slug)
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'File found.',
+            'data' => File::whereSlug($slug)->first()->makeHidden([
+                'created_at', 'updated_at'
+            ])
+        ]);
+    }
 }

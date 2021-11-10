@@ -516,6 +516,7 @@ class ComposerStaticInit97c6a69d2d1ce7caf3f500dceee10a64
         'App\\Jobs\\Job' => __DIR__ . '/../..' . '/app/Jobs/Job.php',
         'App\\Listeners\\ExampleListener' => __DIR__ . '/../..' . '/app/Listeners/ExampleListener.php',
         'App\\Models\\Agency' => __DIR__ . '/../..' . '/app/Models/Agency.php',
+        'App\\Models\\Faq' => __DIR__ . '/../..' . '/app/Models/Faq.php',
         'App\\Models\\File' => __DIR__ . '/../..' . '/app/Models/File.php',
         'App\\Models\\Major' => __DIR__ . '/../..' . '/app/Models/Major.php',
         'App\\Models\\SurveyAgency' => __DIR__ . '/../..' . '/app/Models/SurveyAgency.php',

@@ -24,6 +24,7 @@ return array(
     'App\\Jobs\\Job' => $baseDir . '/app/Jobs/Job.php',
     'App\\Listeners\\ExampleListener' => $baseDir . '/app/Listeners/ExampleListener.php',
     'App\\Models\\Agency' => $baseDir . '/app/Models/Agency.php',
+    'App\\Models\\Faq' => $baseDir . '/app/Models/Faq.php',
     'App\\Models\\File' => $baseDir . '/app/Models/File.php',
     'App\\Models\\Major' => $baseDir . '/app/Models/Major.php',
     'App\\Models\\SurveyAgency' => $baseDir . '/app/Models/SurveyAgency.php',

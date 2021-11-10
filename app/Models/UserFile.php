@@ -20,6 +20,7 @@ class UserFile extends Model
         'file_id',
         'file',
         'content_type',
+        'is_locked',
         'is_checked',
         'is_notified',
         'is_verified',
@@ -35,6 +36,7 @@ class UserFile extends Model
     protected $hidden = [];
 
     protected $casts = [
+        'is_locked' => 'boolean',
         'is_checked' => 'boolean',
         'is_notified' => 'boolean',
         'is_verified' => 'boolean',

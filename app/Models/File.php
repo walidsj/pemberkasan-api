@@ -31,4 +31,9 @@ class File extends Model
     {
         return $this->hasMany(Faq::class);
     }
+
+    public function user_file()
+    {
+        return $this->hasOne(UserFile::class);
+    }
 }

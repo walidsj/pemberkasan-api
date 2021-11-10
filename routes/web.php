@@ -24,7 +24,6 @@ $router->get('/', ['uses' => 'Controller@welcome']);
 $router->post('/login', ['uses' => 'AuthController@login']);
 
 $router->get('/agencies', ['uses' => 'AgenciesController@index']);
-$router->get('/files', ['uses' => 'FilesController@index']);
 
 $router->group(
     ['middleware' => 'jwt'],
@@ -36,6 +35,7 @@ $router->group(
         $router->post('/survey-agencies', ['uses' => 'SurveyAgenciesController@store']);
         $router->get('/my/survey-agency', ['uses' => 'SurveyAgenciesController@me']);
 
+        $router->get('/files', ['uses' => 'FilesController@index']);
         $router->get('/files/{slug}', ['uses' => 'FilesController@show']);
 
         $router->post('/user-files/{file_id}', ['uses' => 'UserFilesController@store']);

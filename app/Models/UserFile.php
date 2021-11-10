@@ -14,7 +14,18 @@ class UserFile extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'user_id',
+        'whatsapp',
+        'file_id',
+        'file',
+        'content_type',
+        'is_checked',
+        'is_notified',
+        'is_verified',
+        'verificator_id',
+        'message'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.

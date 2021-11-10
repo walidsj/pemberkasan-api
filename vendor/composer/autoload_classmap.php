@@ -29,6 +29,7 @@ return array(
     'App\\Models\\Major' => $baseDir . '/app/Models/Major.php',
     'App\\Models\\SurveyAgency' => $baseDir . '/app/Models/SurveyAgency.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
+    'App\\Models\\UserFile' => $baseDir . '/app/Models/UserFile.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',

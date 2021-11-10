@@ -18,7 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->foreignId('major_id')->constrained('majors')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('agency_id')->constrained('agencies')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('agency_id')->nullable(); // foreign
+            $table->foreign('agency_id')->references('id')->on('agencies')->onDelete('cascade')->onUpdate('cascade');
             $table->string('password');
             $table->enum('role', ['user', 'verificator', 'admin'])->default('user');
             $table->timestamps();

@@ -14,7 +14,7 @@ class AddStatusToFilesTable extends Migration
     public function up()
     {
         Schema::table('files', function (Blueprint $table) {
-            $table->boolean('status')->default(false);
+            $table->boolean('status')->after('example2')->default(false);
         });
     }
 

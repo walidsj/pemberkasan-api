@@ -23,6 +23,10 @@ class File extends Model
      */
     protected $hidden = [];
 
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
     public function faqs()
     {
         return $this->hasMany(Faq::class);

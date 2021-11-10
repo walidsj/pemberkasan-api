@@ -31,7 +31,7 @@ class UserFilesController extends Controller
 
             $existed_file = UserFile::whereUserId($user->id)->whereFileId($file->id)->first();
 
-            if ($existed_file->is_locked == true)
+            if (!empty($existed_file->is_locked) && $existed_file->is_locked  == true)
                 return response()->json([
                     'success' => false,
                     'message' => 'Berkas terkunci karena masih dalam proses verifikasi.'
@@ -61,7 +61,6 @@ class UserFilesController extends Controller
                 $user_file->is_notified = false;
                 $user_file->is_verified = false;
                 $user_file->is_locked = true;
-                $user_file->message = null;
                 $user_file->save();
 
                 return response()->json([

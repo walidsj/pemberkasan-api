@@ -532,6 +532,7 @@ class ComposerStaticInit97c6a69d2d1ce7caf3f500dceee10a64
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FilesController' => __DIR__ . '/../..' . '/app/Http/Controllers/FilesController.php',
         'App\\Http\\Controllers\\SurveyAgenciesController' => __DIR__ . '/../..' . '/app/Http/Controllers/SurveyAgenciesController.php',
+        'App\\Http\\Controllers\\UserFilesController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserFilesController.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\Cors' => __DIR__ . '/../..' . '/app/Http/Middleware/Cors.php',
         'App\\Http\\Middleware\\ExampleMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/ExampleMiddleware.php',

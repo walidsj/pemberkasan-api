@@ -37,6 +37,8 @@ $router->group(
         $router->get('/my/survey-agency', ['uses' => 'SurveyAgenciesController@me']);
 
         $router->get('/files/{slug}', ['uses' => 'FilesController@show']);
+
+        $router->post('/user-files/{file_id}', ['uses' => 'UserFilesController@store']);
     }
 );
 

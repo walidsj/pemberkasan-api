@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class File extends Model
+class Faq extends Model
 {
     use HasFactory;
 
@@ -22,9 +22,4 @@ class File extends Model
      * @var array
      */
     protected $hidden = [];
-
-    public function faqs()
-    {
-        return $this->hasMany(Faq::class);
-    }
 }

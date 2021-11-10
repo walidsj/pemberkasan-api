@@ -25,7 +25,7 @@ class FilesController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'File found.',
-            'data' => File::whereSlug($slug)->first()->makeHidden([
+            'data' => File::with(['faqs'])->whereSlug($slug)->first()->makeHidden([
                 'created_at', 'updated_at'
             ])
         ]);

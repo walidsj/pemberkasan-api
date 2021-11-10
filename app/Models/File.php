@@ -24,7 +24,7 @@ class File extends Model
     protected $hidden = [];
 
     protected $casts = [
-        'status' => 'boolean',
+        'is_active' => 'boolean',
     ];
 
     public function faqs()

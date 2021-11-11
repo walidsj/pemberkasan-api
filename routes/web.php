@@ -43,7 +43,12 @@ $router->group(
 );
 
 
-
+$router->get('/symlink/user-uploads', function () {
+    $target = __DIR__ . '/../storage/app/user_uploads';
+    $link = __DIR__ . '/../public/user_uploads';
+    symlink($target, $link);
+    echo readlink($link);
+});
 
 
 $router->get('/migrate', function () {

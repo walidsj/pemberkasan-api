@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class UserFile extends Model
 {
@@ -42,6 +43,10 @@ class UserFile extends Model
         'is_verified' => 'boolean',
     ];
 
+    protected $appends = [
+        'file_url'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -50,5 +55,15 @@ class UserFile extends Model
     public function verificator()
     {
         return $this->belongsTo(User::class, 'verificator_id', 'id');
+    }
+
+    public function filex()
+    {
+        return $this->belongsTo(File::class);
+    }
+
+    public function getFileUrlAttribute()
+    {
+        return (!empty($this->file)) ? env('APP_URL') . '/assets/user-uploads/' . explode('_', $this->file)[0] . '/' . $this->file : null;
     }
 }

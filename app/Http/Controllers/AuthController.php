@@ -86,4 +86,34 @@ class AuthController extends Controller
             'data' => $request->auth
         ]);
     }
+
+
+    public function loginVerificator(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        $user = User::where('email', $request->email)->whereIn('role', ['admin', 'verificator'])->first();
+
+        if (empty($user))
+            return response()->json([
+                'success' => false,
+                'message' => 'Account not found.'
+            ], 400);
+
+        if (!Hash::check($request->password, $user->password))
+            return response()->json([
+                'success' => false,
+                'message' => 'Your password is wrong.'
+            ], 422);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Login successfull.',
+            'data' => $user->makeHidden(['agency_id', 'major_id']),
+            'token' => $this->jwt($user)
+        ]);
+    }
 }

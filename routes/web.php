@@ -22,18 +22,24 @@ use Illuminate\Support\Facades\Artisan;
 $router->get('/migrate', function () {
     return Artisan::call('migrate');
 });
-
 $router->get('/migrate/rollback', function () {
     return Artisan::call('migrate:rollback');
 });
 
+
 $router->get('/', ['uses' => 'Controller@welcome']);
 
-$router->get('/assets/user-uploads/{file_folder}/{file_name}', ['uses' => 'FilesController@user_uploads']);
 
 $router->post('/login', ['uses' => 'AuthController@login']);
+$router->post('/verificator/login', ['uses' => 'AuthController@loginVerificator']);
+
 
 $router->get('/agencies', ['uses' => 'AgenciesController@index']);
+
+$router->get('/majors', ['uses' => 'MajorsController@index']);
+$router->get('/majors/{major_id}', ['uses' => 'MajorsController@showClass']);
+
+$router->get('/assets/user-uploads/{file_folder}/{file_name}', ['uses' => 'FilesController@user_uploads']);
 
 $router->group(
     ['middleware' => 'jwt'],

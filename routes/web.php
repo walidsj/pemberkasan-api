@@ -23,18 +23,13 @@ $router->get('/migrate', function () {
     return Artisan::call('migrate');
 });
 
-$router->get('/symlink/user-uploads', function () {
-    $target = __DIR__ . '/../storage/app/user_uploads';
-    $link = __DIR__ . '/../public/user_uploads';
-    symlink($target, $link);
-    echo readlink($link);
-});
-
 $router->get('/migrate/rollback', function () {
     return Artisan::call('migrate:rollback');
 });
 
 $router->get('/', ['uses' => 'Controller@welcome']);
+
+$router->get('/assets/user-uploads/{file_folder}/{file_name}', ['uses' => 'FilesController@user_uploads']);
 
 $router->post('/login', ['uses' => 'AuthController@login']);
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use Illuminate\Support\Facades\Storage;
 
 class FilesController extends Controller
 {
@@ -33,5 +34,35 @@ class FilesController extends Controller
                 'created_at', 'updated_at'
             ])
         ]);
+    }
+
+    public function user_uploads($file_folder, $file_name)
+    {
+        $destinationPath = storage_path('app/user_uploads/' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $file_folder) . '/');
+        $existed_file = $destinationPath . urldecode($file_name);
+        $ext = pathinfo($existed_file, PATHINFO_EXTENSION);
+
+        if (file_exists($existed_file)) {
+            switch ($ext) {
+                case "pdf":
+                    $content_type = 'application/pdf';
+                    break;
+                case "jpg":
+                    $content_type = 'image/jpeg';
+                    break;
+                case "jpeg":
+                    $content_type = 'image/jpeg';
+                    break;
+                case "png":
+                    $content_type = 'image/png';
+                    break;
+                default:
+                    $content_type = 'image/*';
+                    break;
+            }
+
+            $file = file_get_contents($existed_file);
+            return response($file, 200)->header('Content-Type', $content_type);
+        }
     }
 }

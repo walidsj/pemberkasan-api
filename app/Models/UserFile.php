@@ -64,6 +64,6 @@ class UserFile extends Model
 
     public function getFileUrlAttribute()
     {
-        return (!empty($this->file)) ? env('APP_URL') . '/assets/user-uploads/' . explode('_', $this->file)[0] . '/' . $this->file : null;
+        return (!empty($this->file)) ? env('APP_URL') . '/assets/user-uploads/' . explode('_', $this->file)[0] . '/' . urlencode($this->file) : null;
     }
 }

@@ -98,7 +98,6 @@ class UserFilesController extends Controller
             'data' => UserFile::select('user_files.*', 'users.major_id', 'users.name', 'users.class', 'users.id AS npm')
                 ->join('users', 'user_files.user_id', '=', 'users.id')
                 ->whereMajorId($major_id)
-                ->orderBy('updated_at')
                 ->get()
         ]);
     }

@@ -53,14 +53,19 @@ $router->group(
         $router->get('/files', ['uses' => 'FilesController@index']);
         $router->get('/files/{slug}', ['uses' => 'FilesController@show']);
 
-        $router->get('/user-files/{user_file_id}', ['uses' => 'UserFilesController@show']);
         $router->post('/user-files/{file_id}', ['uses' => 'UserFilesController@store']);
 
         $router->group(
             ['middleware' => 'role:verificator,admin'],
             function () use ($router) {
+
                 $router->get('/majors/{major_id}/class/{class}', ['uses' => 'UsersController@getClass']);
                 $router->get('/majors/user-files/{major_id}', ['uses' => 'UserFilesController@getByMajor']);
+
+                $router->get('/user-files/{user_file_id}', ['uses' => 'UserFilesController@show']);
+                $router->post('/user-files/{user_file_id}/reject', ['uses' => 'VerificationController@reject']);
+                $router->post('/user-files/{user_file_id}/approve', ['uses' => 'VerificationController@approve']);
+                $router->post('/user-files/{user_file_id}/notify', ['uses' => 'VerificationController@notify']);
             }
         );
     }

@@ -107,7 +107,7 @@ class UserFilesController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'User files found.',
-            'data' => UserFile::with(['user', 'user.major'])
+            'data' => UserFile::with(['user', 'user.major', 'verificator'])
                 ->findOrFail($user_file_id)
         ]);
     }

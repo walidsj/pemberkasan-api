@@ -93,7 +93,7 @@ class UserFilesController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'User files of major ' . $major_id . ' found.',
-            'data' => UserFile::select('user_files.*', 'users.major_id', 'users.name', 'users.class')
+            'data' => UserFile::select('user_files.*', 'users.major_id', 'users.name', 'users.class', 'users.id AS npm')
                 ->join('users', 'user_files.user_id', '=', 'users.id')
                 ->whereMajorId($major_id)
                 ->orderBy('updated_at')

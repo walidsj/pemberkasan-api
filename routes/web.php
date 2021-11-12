@@ -33,7 +33,6 @@ $router->get('/', ['uses' => 'Controller@welcome']);
 $router->post('/login', ['uses' => 'AuthController@login']);
 $router->post('/verificator/login', ['uses' => 'AuthController@loginVerificator']);
 
-
 $router->get('/agencies', ['uses' => 'AgenciesController@index']);
 
 $router->get('/majors', ['uses' => 'MajorsController@index']);
@@ -55,5 +54,13 @@ $router->group(
         $router->get('/files/{slug}', ['uses' => 'FilesController@show']);
 
         $router->post('/user-files/{file_id}', ['uses' => 'UserFilesController@store']);
+
+        $router->group(
+            ['middleware' => 'role:verificator,admin'],
+            function () use ($router) {
+                $router->get('/majors/{major_id}/class/{class}', ['uses' => 'UsersController@getClass']);
+                $router->get('/majors/user-files/{major_id}', ['uses' => 'UserFilesController@getByMajor']);
+            }
+        );
     }
 );

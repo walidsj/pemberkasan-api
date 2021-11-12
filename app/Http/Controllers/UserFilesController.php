@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\File;
+use App\Models\User;
 use App\Models\UserFile;
 use Illuminate\Http\Request;
 
@@ -85,5 +86,18 @@ class UserFilesController extends Controller
                 'data' => $user_file
             ]);
         }
+    }
+
+    public function getByMajor($major_id)
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'User files of major ' . $major_id . ' found.',
+            'data' => UserFile::select('user_files.*', 'users.major_id', 'users.name', 'users.class')
+                ->join('users', 'user_files.user_id', '=', 'users.id')
+                ->whereMajorId($major_id)
+                ->orderBy('updated_at')
+                ->get()
+        ]);
     }
 }

@@ -29,6 +29,7 @@ class UserFile extends Model
         'checked_at',
         'notified_at',
         'verified_at',
+        'backupped_at',
         'verificator_id',
         'message'
     ];

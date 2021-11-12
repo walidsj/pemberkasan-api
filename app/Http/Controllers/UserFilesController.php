@@ -101,4 +101,14 @@ class UserFilesController extends Controller
                 ->get()
         ]);
     }
+
+    public function show($user_file_id)
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'User files found.',
+            'data' => UserFile::with(['user', 'user.major'])
+                ->findOrFail($user_file_id)
+        ]);
+    }
 }

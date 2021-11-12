@@ -5,11 +5,20 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'ee19f58fd4bc57d5596c76350417158bab7aa790',
+        'reference' => '5df6746a9b5cdd663aadf6e75e8b1c2987a39b5b',
         'name' => 'laravel/lumen',
         'dev' => true,
     ),
     'versions' => array(
+        'asm89/stack-cors' => array(
+            'pretty_version' => 'v2.0.3',
+            'version' => '2.0.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../asm89/stack-cors',
+            'aliases' => array(),
+            'reference' => '9cb795bf30988e8c96dd3c40623c48a877bc6714',
+            'dev_requirement' => false,
+        ),
         'brick/math' => array(
             'pretty_version' => '0.9.3',
             'version' => '0.9.3.0',
@@ -137,6 +146,15 @@
             'install_path' => __DIR__ . '/../firebase/php-jwt',
             'aliases' => array(),
             'reference' => 'd2113d9b2e0e349796e72d2a63cf9319100382d2',
+            'dev_requirement' => false,
+        ),
+        'fruitcake/laravel-cors' => array(
+            'pretty_version' => 'v2.0.4',
+            'version' => '2.0.4.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../fruitcake/laravel-cors',
+            'aliases' => array(),
+            'reference' => 'a8ccedc7ca95189ead0e407c43b530dc17791d6a',
             'dev_requirement' => false,
         ),
         'graham-campbell/result-type' => array(
@@ -403,7 +421,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'ee19f58fd4bc57d5596c76350417158bab7aa790',
+            'reference' => '5df6746a9b5cdd663aadf6e75e8b1c2987a39b5b',
             'dev_requirement' => false,
         ),
         'laravel/lumen-framework' => array(

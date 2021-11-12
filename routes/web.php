@@ -53,6 +53,7 @@ $router->group(
         $router->get('/files', ['uses' => 'FilesController@index']);
         $router->get('/files/{slug}', ['uses' => 'FilesController@show']);
 
+        $router->get('/user-files/{user_file_id}', ['uses' => 'UserFilesController@show']);
         $router->post('/user-files/{file_id}', ['uses' => 'UserFilesController@store']);
 
         $router->group(

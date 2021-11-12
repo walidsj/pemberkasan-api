@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class FilesController extends Controller
 {
@@ -58,7 +59,7 @@ class FilesController extends Controller
             }
 
             $file = file_get_contents($existed_file);
-            return response($file, 200)->header('Content-Type', $content_type);
+            return response($file)->header('Content-Type', $content_type);
         }
     }
 }

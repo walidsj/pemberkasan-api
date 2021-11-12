@@ -33,7 +33,7 @@ class UserFilesController extends Controller
 
             $existed_file = UserFile::whereUserId($user->id)->whereFileId($file->id)->first();
 
-            if (!empty($existed_file->is_locked) && $existed_file->is_locked  == true)
+            if (!empty($existed_file->locked_at))
                 return response()->json([
                     'success' => false,
                     'message' => 'Berkas terkunci karena masih dalam proses verifikasi.'
@@ -59,14 +59,11 @@ class UserFilesController extends Controller
                 $user_file->file_id = $file->id;
                 $user_file->file = $upload_file_name;
                 $user_file->content_type = $upload_file_content_type;
-                $user_file->is_locked = true;
-                $user_file->is_checked = false;
-                $user_file->is_notified = false;
-                $user_file->is_verified = false;
                 $user_file->locked_at = Carbon::now();
-                $user_file->checked_at = false;
-                $user_file->notified_at = false;
-                $user_file->verified_at = false;
+                $user_file->checked_at = null;
+                $user_file->notified_at = null;
+                $user_file->verified_at = null;
+                $user_file->backupped_at = null;
                 $user_file->save();
 
                 return response()->json([
@@ -82,7 +79,6 @@ class UserFilesController extends Controller
             $user_file->file_id = $file->id;
             $user_file->file = $upload_file_name;
             $user_file->content_type = $upload_file_content_type;
-            $user_file->is_locked = true;
             $user_file->locked_at = Carbon::now();
             $user_file->save();
 

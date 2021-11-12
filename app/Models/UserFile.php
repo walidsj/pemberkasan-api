@@ -25,6 +25,10 @@ class UserFile extends Model
         'is_checked',
         'is_notified',
         'is_verified',
+        'locked_at',
+        'checked_at',
+        'notified_at',
+        'verified_at',
         'verificator_id',
         'message'
     ];

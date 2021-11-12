@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\User;
 use App\Models\UserFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class UserFilesController extends Controller
 {
@@ -58,10 +59,14 @@ class UserFilesController extends Controller
                 $user_file->file_id = $file->id;
                 $user_file->file = $upload_file_name;
                 $user_file->content_type = $upload_file_content_type;
+                $user_file->is_locked = true;
                 $user_file->is_checked = false;
                 $user_file->is_notified = false;
                 $user_file->is_verified = false;
-                $user_file->is_locked = true;
+                $user_file->locked_at = Carbon::now();
+                $user_file->checked_at = false;
+                $user_file->notified_at = false;
+                $user_file->verified_at = false;
                 $user_file->save();
 
                 return response()->json([
@@ -78,6 +83,7 @@ class UserFilesController extends Controller
             $user_file->file = $upload_file_name;
             $user_file->content_type = $upload_file_content_type;
             $user_file->is_locked = true;
+            $user_file->locked_at = Carbon::now();
             $user_file->save();
 
             return response()->json([

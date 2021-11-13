@@ -90,7 +90,7 @@ class UserFilesController extends Controller
         }
     }
 
-    public function getByMajor($major_id)
+    public function getByMajor($file_id, $major_id)
     {
         return response()->json([
             'success' => true,
@@ -98,6 +98,7 @@ class UserFilesController extends Controller
             'data' => UserFile::with('verificator')->select('user_files.*', 'users.major_id', 'users.name', 'users.class', 'users.id AS npm')
                 ->join('users', 'user_files.user_id', '=', 'users.id')
                 ->whereMajorId($major_id)
+                ->whereFileId($file_id)
                 ->get()
         ]);
     }

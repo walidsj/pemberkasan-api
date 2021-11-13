@@ -60,7 +60,7 @@ $router->group(
             function () use ($router) {
 
                 $router->get('/majors/{major_id}/class/{class}', ['uses' => 'UsersController@getClass']);
-                $router->get('/majors/user-files/{major_id}', ['uses' => 'UserFilesController@getByMajor']);
+                $router->get('/majors/user-files/{file_id}/{major_id}', ['uses' => 'UserFilesController@getByMajor']);
 
                 $router->get('/user-files/{user_file_id}', ['uses' => 'UserFilesController@show']);
                 $router->post('/user-files/{user_file_id}/reject', ['uses' => 'VerificationController@reject']);

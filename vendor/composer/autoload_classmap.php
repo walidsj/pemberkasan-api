@@ -18,6 +18,7 @@ return array(
     'App\\Http\\Controllers\\SurveyAgenciesController' => $baseDir . '/app/Http/Controllers/SurveyAgenciesController.php',
     'App\\Http\\Controllers\\UserFilesController' => $baseDir . '/app/Http/Controllers/UserFilesController.php',
     'App\\Http\\Controllers\\UsersController' => $baseDir . '/app/Http/Controllers/UsersController.php',
+    'App\\Http\\Controllers\\VerificationController' => $baseDir . '/app/Http/Controllers/VerificationController.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\Cors' => $baseDir . '/app/Http/Middleware/Cors.php',
     'App\\Http\\Middleware\\ExampleMiddleware' => $baseDir . '/app/Http/Middleware/ExampleMiddleware.php',

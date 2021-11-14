@@ -545,6 +545,7 @@ class ComposerStaticInit97c6a69d2d1ce7caf3f500dceee10a64
         'App\\Http\\Controllers\\SurveyAgenciesController' => __DIR__ . '/../..' . '/app/Http/Controllers/SurveyAgenciesController.php',
         'App\\Http\\Controllers\\UserFilesController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserFilesController.php',
         'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',
+        'App\\Http\\Controllers\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/VerificationController.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\Cors' => __DIR__ . '/../..' . '/app/Http/Middleware/Cors.php',
         'App\\Http\\Middleware\\ExampleMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/ExampleMiddleware.php',

@@ -50,6 +50,9 @@ $router->group(
         $router->post('/survey-agencies', ['uses' => 'SurveyAgenciesController@store']);
         $router->get('/my/survey-agency', ['uses' => 'SurveyAgenciesController@me']);
 
+        $router->post('/survey-marriages', ['uses' => 'SurveyMarriagesController@store']);
+        $router->get('/my/survey-marriage', ['uses' => 'SurveyMarriagesController@me']);
+
         $router->get('/files', ['uses' => 'FilesController@index']);
         $router->get('/files/{slug}', ['uses' => 'FilesController@show']);
 

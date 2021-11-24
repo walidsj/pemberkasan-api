@@ -112,4 +112,16 @@ class UserFilesController extends Controller
                 ->findOrFail($user_file_id)
         ]);
     }
+
+    public function getByAgency($agency_id)
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'User files of major ' . $agency_id . ' found.',
+            'data' => UserFile::with('verificator')->select('user_files.*', 'users.major_id', 'users.agency_id', 'users.name', 'users.class', 'users.id AS npm')
+                ->join('users', 'user_files.user_id', '=', 'users.id')
+                ->whereAgencyId($agency_id)
+                ->get()
+        ]);
+    }
 }

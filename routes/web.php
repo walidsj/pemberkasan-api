@@ -66,6 +66,7 @@ $router->group(
                 $router->get('/majors/user-files/{file_id}/{major_id}', ['uses' => 'UserFilesController@getByMajor']);
 
                 $router->get('/agencies/user-files/{agency_id}', ['uses' => 'UserFilesController@getByAgency']);
+                $router->get('/agencies/{agency_id}/users', ['uses' => 'UsersController@getByAgency']);
 
                 $router->get('/user-files/{user_file_id}', ['uses' => 'UserFilesController@show']);
                 $router->post('/user-files/{user_file_id}/reject', ['uses' => 'VerificationController@reject']);

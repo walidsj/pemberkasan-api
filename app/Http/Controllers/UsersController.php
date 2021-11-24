@@ -16,4 +16,15 @@ class UsersController extends Controller
                 ->get()
         ]);
     }
+
+    public function getByAgency($agency_id)
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'User found.',
+            'data' => User::whereAgencyId($agency_id)
+                ->orderBy('name')
+                ->get()
+        ]);
+    }
 }

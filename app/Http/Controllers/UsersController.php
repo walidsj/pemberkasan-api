@@ -22,7 +22,7 @@ class UsersController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'User found.',
-            'data' => User::with(['agency'])
+            'data' => User::with(['agency', 'major'])
                 ->whereAgencyId($agency_id)
                 ->orderBy('name')
                 ->get()

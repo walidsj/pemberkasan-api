@@ -152,7 +152,7 @@ class UserFilesController extends Controller
             foreach ($user_files as $files) {
                 $file = path($files->slug) . DIRECTORY_SEPARATOR . $files->file;
                 if (file_exists($file) && is_file($file)) {
-                    $zip->addFile($file, $files->name);
+                    $zip->addFile($file, $files->file);
                     // $test[$i] = $file;
                     // $i++;
                 }

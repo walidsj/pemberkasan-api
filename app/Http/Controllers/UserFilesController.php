@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\UserFile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use ZipArchive;
 
 class UserFilesController extends Controller
 {
@@ -144,8 +143,8 @@ class UserFilesController extends Controller
             return storage_path('/app/user_uploads/' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $slug) . '/');
         }
 
-        $zip = new ZipArchive();
-        if ($zip->open($zipPath . $zipFileName, ZipArchive::CREATE) === TRUE) {
+        $zip = new \ZipArchive();
+        if ($zip->open($zipPath . $zipFileName, \ZipArchive::CREATE) === TRUE) {
             // Add File in ZipArchive
             foreach ($user_files as $file) {
                 $zip->addFile(path($file->slug), $file->file);

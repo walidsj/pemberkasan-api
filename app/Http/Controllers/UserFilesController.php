@@ -137,15 +137,15 @@ class UserFilesController extends Controller
 
         $zipFileName = $user->id . '_' . $user->name . '.zip';
 
-        $zipPath = storage_path('/app/user_uploads/ZIP/');
+        $zipPath = storage_path('app/user_uploads/ZIP');
 
         function path($slug)
         {
-            return storage_path('/app/user_uploads/' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $slug) . '/');
+            return storage_path('app/user_uploads/' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $slug) . '/');
         }
 
         $zip = new ZipArchive();
-        if ($zip->open($zipPath . $zipFileName, ZipArchive::CREATE) === TRUE) {
+        if ($zip->open($zipPath . DIRECTORY_SEPARATOR . $zipFileName, ZipArchive::CREATE) === TRUE) {
             // Add File in ZipArchive
             foreach ($user_files as $file) {
                 $zip->addFile(path($file->slug), $file->file);
@@ -158,7 +158,7 @@ class UserFilesController extends Controller
             'Content-Type' => 'application/octet-stream',
         ];
 
-        $filetopath = $zipPath . $zipFileName;
+        $filetopath = $zipPath . DIRECTORY_SEPARATOR . $zipFileName;
 
         if (file_exists($filetopath)) {
             return response()->download($filetopath, $zipFileName, $headers);

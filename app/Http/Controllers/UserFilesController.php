@@ -135,8 +135,6 @@ class UserFilesController extends Controller
             ->join('files', 'user_files.file_id', '=', 'files.id')
             ->get();
 
-        dd($user_files);
-
         $zipFileName = $user->id . '_' . $user->name . '.zip';
 
         $zipPath = storage_path('app/user_uploads/ZIP');
@@ -148,10 +146,12 @@ class UserFilesController extends Controller
 
         $zip = new ZipArchive();
         if ($zip->open($zipPath . DIRECTORY_SEPARATOR . $zipFileName, ZipArchive::CREATE) === TRUE) {
+
             // Add File in ZipArchive
-            foreach ($user_files as $file) {
-                $zip->addFile(path($file->slug), $file->file);
+            foreach ($user_files as $files) {
+                $zip->addFile(path($files->slug), $files->file);
             }
+
             // Close ZipArchive
             $zip->close();
         }

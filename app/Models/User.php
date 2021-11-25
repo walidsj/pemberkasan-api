@@ -57,4 +57,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return env('APP_URL') . '/assets/download/user-files/' . $this->id;
     }
+
+    public function user_files()
+    {
+        return $this->hasMany(UserFile::class);
+    }
 }

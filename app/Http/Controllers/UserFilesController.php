@@ -150,9 +150,12 @@ class UserFilesController extends Controller
             $i = 1;
             // Add File in ZipArchive
             foreach ($user_files as $files) {
-                $zip->addFile(path($files->slug), $files->file);
-                $test[$i] = path($files->slug) . DIRECTORY_SEPARATOR . $files->file;
-                $i++;
+                $file = path($files->slug) . DIRECTORY_SEPARATOR . $files->file;
+                if (file_exists($file) && is_file($file)) {
+                    $zip->addFile(path($files->slug), $files->file);
+                    $test[$i] = $file;
+                    $i++;
+                }
             }
 
             dd($test);

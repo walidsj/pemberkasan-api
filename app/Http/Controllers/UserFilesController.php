@@ -151,6 +151,7 @@ class UserFilesController extends Controller
             // Add File in ZipArchive
             foreach ($user_files as $files) {
                 $file = path($files->slug) . DIRECTORY_SEPARATOR . $files->file;
+                $filename = !empty($files->verified_at) ? 'verif_' . $files->file : 'belum verif_' . $files->file;
                 if (file_exists($file) && is_file($file)) {
                     $zip->addFile($file, $files->file);
                     // $test[$i] = $file;

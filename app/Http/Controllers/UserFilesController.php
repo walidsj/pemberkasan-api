@@ -135,7 +135,7 @@ class UserFilesController extends Controller
             ->join('files', 'user_files.file_id', '=', 'files.id')
             ->get();
 
-        $zipFileName = $user->npm . '_' . $user->name . '.zip';
+        $zipFileName = $user->id . '_' . $user->name . '.zip';
 
         $zipPath = storage_path('/app/user_uploads/ZIP/');
 

@@ -72,6 +72,8 @@ $router->group(
                 $router->post('/user-files/{user_file_id}/reject', ['uses' => 'VerificationController@reject']);
                 $router->post('/user-files/{user_file_id}/approve', ['uses' => 'VerificationController@approve']);
                 $router->post('/user-files/{user_file_id}/notify', ['uses' => 'VerificationController@notify']);
+
+                $router->get('/download/user-files/{user_id}', ['uses' => 'UserFilesController@download']);
             }
         );
     }

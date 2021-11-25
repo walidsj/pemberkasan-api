@@ -48,4 +48,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->belongsTo(Agency::class);
     }
+
+    protected $appends = [
+        'file_url'
+    ];
+
+    public function getFileUrlAttribute()
+    {
+        return env('APP_URL') . '/assets/download/user-files/' . $this->id;
+    }
 }

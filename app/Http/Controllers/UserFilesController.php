@@ -141,7 +141,7 @@ class UserFilesController extends Controller
 
         function path($slug)
         {
-            return storage_path('app/user_uploads/' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $slug) . DIRECTORY_SEPARATOR);
+            return storage_path('app/user_uploads/' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $slug));
         }
 
         $zip = new ZipArchive();

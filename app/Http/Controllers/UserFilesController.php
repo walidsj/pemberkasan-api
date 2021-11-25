@@ -158,7 +158,7 @@ class UserFilesController extends Controller
                 }
             }
 
-            dd($test);
+            // dd($test);
             // Close ZipArchive
             $zip->close();
         }

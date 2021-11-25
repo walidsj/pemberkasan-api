@@ -135,13 +135,15 @@ class UserFilesController extends Controller
             ->join('files', 'user_files.file_id', '=', 'files.id')
             ->get();
 
+        dd($user_files);
+
         $zipFileName = $user->id . '_' . $user->name . '.zip';
 
         $zipPath = storage_path('app/user_uploads/ZIP');
 
         function path($slug)
         {
-            return storage_path('app/user_uploads/' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $slug) . '/');
+            return storage_path('app/user_uploads/' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $slug) . DIRECTORY_SEPARATOR);
         }
 
         $zip = new ZipArchive();

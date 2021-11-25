@@ -62,4 +62,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->hasMany(UserFile::class);
     }
+
+    public function user_files_verified()
+    {
+        return $this->hasMany(UserFile::class)->whereNotNull('verified_at');
+    }
 }

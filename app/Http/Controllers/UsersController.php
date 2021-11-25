@@ -23,7 +23,7 @@ class UsersController extends Controller
             'success' => true,
             'message' => 'User found.',
             'data' => User::with(['major'])
-                ->withCount('user_files')
+                ->withCount(['user_files', 'user_files_verified'])
                 ->whereAgencyId($agency_id)
                 ->orderBy('name')
                 ->get()

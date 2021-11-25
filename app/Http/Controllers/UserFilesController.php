@@ -146,12 +146,16 @@ class UserFilesController extends Controller
 
         $zip = new ZipArchive();
         if ($zip->open($zipPath . DIRECTORY_SEPARATOR . $zipFileName, ZipArchive::CREATE) === TRUE) {
-
+            $test = [];
+            $i = 1;
             // Add File in ZipArchive
             foreach ($user_files as $files) {
                 $zip->addFile(path($files->slug), $files->file);
+                $test[$i] = $files->slug . DIRECTORY_SEPARATOR . $files->file;
+                $i++;
             }
 
+            dd($test);
             // Close ZipArchive
             $zip->close();
         }

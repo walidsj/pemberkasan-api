@@ -145,7 +145,7 @@ class UserFilesController extends Controller
         }
 
         $zip = new ZipArchive();
-        if ($zip->open($zipPath . DIRECTORY_SEPARATOR . $zipFileName, ZipArchive::CREATE) === TRUE) {
+        if ($zip->open($zipPath . DIRECTORY_SEPARATOR . $zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
             // $test = [];
             // $i = 1;
             // Add File in ZipArchive

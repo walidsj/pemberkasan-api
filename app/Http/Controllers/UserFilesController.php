@@ -136,7 +136,7 @@ class UserFilesController extends Controller
             ->join('files', 'user_files.file_id', '=', 'files.id')
             ->get();
 
-        $zipFileName = $user->id . '_' . $user->name . '.zip';
+        $zipFileName = 'downloadby_' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', request()->auth->name) . '___' . $user->id . '_' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $user->name) . '.zip';
 
         $zipPath = storage_path('app/user_uploads/ZIP');
 
@@ -197,7 +197,7 @@ class UserFilesController extends Controller
             ->whereAgencyId($agency_id)
             ->get();
 
-        $zipFileName = 'downloadby_' . request()->auth->name . '___' . $agency->name . '.zip';
+        $zipFileName = 'downloadby_' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', request()->auth->name) . '___' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $agency->name) . '.zip';
 
         $zipPath = storage_path('app/user_uploads/ZIP_AGENCY');
 

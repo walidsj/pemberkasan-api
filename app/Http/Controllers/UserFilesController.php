@@ -211,12 +211,14 @@ class UserFilesController extends Controller
             // Add File in ZipArchive
             foreach ($users as $user) {
                 foreach ($user_files as $files) {
-                    $file = path_agency($files->slug) . DIRECTORY_SEPARATOR . $files->file;
-                    $filename = !empty($files->verified_at) ? 'verif_' . $files->file : 'belum verif_' . $files->file;
-                    if (file_exists($file) && is_file($file)) {
-                        $zip->addFile($file, $user->npm . '_' . $user->name . DIRECTORY_SEPARATOR . $filename);
-                        // $test[$i] = $file;
-                        // $i++;
+                    if ($files->user_id == $user->id) {
+                        $file = path_agency($files->slug) . DIRECTORY_SEPARATOR . $files->file;
+                        $filename = !empty($files->verified_at) ? 'verif_' . $files->file : 'belum verif_' . $files->file;
+                        if (file_exists($file) && is_file($file)) {
+                            $zip->addFile($file, $user->id . '_' . $user->name . DIRECTORY_SEPARATOR . $filename);
+                            // $test[$i] = $file;
+                            // $i++;
+                        }
                     }
                 }
             }

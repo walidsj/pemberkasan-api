@@ -14,7 +14,7 @@ class AgenciesController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Agencies found.',
-            'data' => Agency::orderBy('name')->get()->makeHidden(['created_at', 'updated_at'])
+            'data' => Agency::orderBy('name')->get()->makeHidden(['file_url', 'created_at', 'updated_at'])
         ]);
     }
 
@@ -23,7 +23,7 @@ class AgenciesController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Agencies found.',
-            'data' => Agency::with('file_url')->orderBy('name')->get()->makeHidden(['created_at', 'updated_at'])
+            'data' => Agency::orderBy('name')->get()->makeHidden(['created_at', 'updated_at'])
         ]);
     }
 }

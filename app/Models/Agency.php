@@ -23,6 +23,10 @@ class Agency extends Model
      */
     protected $hidden = [];
 
+    protected $appends = [
+        'file_url'
+    ];
+
     public function getFileUrlAttribute()
     {
         return env('APP_URL') . '/assets/download/agencies/' . $this->id;

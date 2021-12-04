@@ -197,7 +197,7 @@ class UserFilesController extends Controller
             ->whereAgencyId($agency_id)
             ->get();
 
-        $zipFileName = $agency->name . '.zip';
+        $zipFileName = 'downloadby_' . request()->auth->name . '___' . $agency->name . '.zip';
 
         $zipPath = storage_path('app/user_uploads/ZIP_AGENCY');
 

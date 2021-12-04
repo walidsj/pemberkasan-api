@@ -183,6 +183,8 @@ class UserFilesController extends Controller
 
     public function downloadByAgency($agency_id)
     {
+        ini_set('max_execution_time', '0');
+
         $agency = Agency::findOrFail($agency_id);
 
         $users = User::whereAgencyId($agency_id)

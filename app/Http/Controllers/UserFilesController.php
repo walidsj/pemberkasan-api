@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agency;
 use App\Models\File;
 use App\Models\User;
 use App\Models\UserFile;
@@ -156,6 +157,67 @@ class UserFilesController extends Controller
                     $zip->addFile($file, $filename);
                     // $test[$i] = $file;
                     // $i++;
+                }
+            }
+
+            // dd($test);
+            // Close ZipArchive
+            $zip->close();
+        }
+
+        $headers = [
+            'Content-Type' => 'application/octet-stream',
+        ];
+
+        $filetopath = $zipPath . DIRECTORY_SEPARATOR . $zipFileName;
+
+        if (file_exists($filetopath)) {
+            return response()->download($filetopath, $zipFileName, $headers);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'File not found'
+        ], 404);
+    }
+
+    public function downloadByAgency($agency_id)
+    {
+        $agency = Agency::findOrFail($agency_id);
+
+        $users = User::whereAgencyId($agency_id)
+            ->get();
+
+        $user_files = UserFile::select('user_files.*', 'files.slug')
+            ->join('files', 'user_files.file_id', '=', 'files.id')
+            ->join('users', 'user_files.user_id', '=', 'users.id')
+            ->join('agencies', 'users.agency_id', '=', 'agencies.id')
+            ->whereAgencyId($agency_id)
+            ->get();
+
+        $zipFileName = $agency->name . '.zip';
+
+        $zipPath = storage_path('app/user_uploads/ZIP_AGENCY');
+
+        function path_agency($slug)
+        {
+            return storage_path('app/user_uploads/' . preg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $slug));
+        }
+
+        $zip = new ZipArchive();
+        if ($zip->open($zipPath . DIRECTORY_SEPARATOR . $zipFileName, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
+            // $test = [];
+            // $i = 1;
+            // Add File in ZipArchive
+            foreach ($users as $user) {
+                foreach ($user_files as $files) {
+                    $file = path_agency($files->slug) . DIRECTORY_SEPARATOR . $files->file;
+                    $filename = !empty($files->verified_at) ? 'verif_' . $files->file : 'belum verif_' . $files->file;
+                    if (file_exists($file) && is_file($file)) {
+                        $zip->addFile($file, $user->npm . '_' . $user->name . DIRECTORY_SEPARATOR . $filename);
+                        // $test[$i] = $file;
+                        // $i++;
+                    }
                 }
             }
 

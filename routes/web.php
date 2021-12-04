@@ -41,6 +41,7 @@ $router->get('/majors/{major_id}', ['uses' => 'MajorsController@showClass']);
 $router->get('/assets/user-uploads/{file_folder}/{file_name}', ['uses' => 'FilesController@user_uploads']);
 
 $router->get('/assets/download/user-files/{user_id}', ['uses' => 'UserFilesController@download']);
+$router->get('/assets/download/agencies/{agency_id}', ['uses' => 'UserFilesController@downloadByAgency']);
 
 
 $router->group(

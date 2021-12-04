@@ -22,4 +22,9 @@ class Agency extends Model
      * @var array
      */
     protected $hidden = [];
+
+    public function file_url()
+    {
+        return env('APP_URL') . '/assets/download/agencies/' . $this->id;
+    }
 }

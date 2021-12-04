@@ -17,4 +17,13 @@ class AgenciesController extends Controller
             'data' => Agency::orderBy('name')->get()->makeHidden(['created_at', 'updated_at'])
         ]);
     }
+
+    public function getWithDownload()
+    {
+        return response()->json([
+            'success' => true,
+            'message' => 'Agencies found.',
+            'data' => Agency::with('file_url')->orderBy('name')->get()->makeHidden(['created_at', 'updated_at'])
+        ]);
+    }
 }

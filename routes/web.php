@@ -40,10 +40,6 @@ $router->get('/majors/{major_id}', ['uses' => 'MajorsController@showClass']);
 
 $router->get('/assets/user-uploads/{file_folder}/{file_name}', ['uses' => 'FilesController@user_uploads']);
 
-$router->get('/assets/download/user-files/{user_id}', ['uses' => 'UserFilesController@download']);
-$router->get('/assets/download/agencies/{agency_id}', ['uses' => 'UserFilesController@downloadByAgency']);
-
-
 $router->group(
     ['middleware' => 'jwt'],
     function () use ($router) {
@@ -65,7 +61,6 @@ $router->group(
         $router->group(
             ['middleware' => 'role:verificator,admin'],
             function () use ($router) {
-
                 $router->get('/majors/{major_id}/class/{class}', ['uses' => 'UsersController@getClass']);
                 $router->get('/majors/user-files/{file_id}/{major_id}', ['uses' => 'UserFilesController@getByMajor']);
 
@@ -78,6 +73,14 @@ $router->group(
                 $router->post('/user-files/{user_file_id}/reject', ['uses' => 'VerificationController@reject']);
                 $router->post('/user-files/{user_file_id}/approve', ['uses' => 'VerificationController@approve']);
                 $router->post('/user-files/{user_file_id}/notify', ['uses' => 'VerificationController@notify']);
+            }
+        );
+
+        $router->group(
+            ['middleware' => 'role:admin'],
+            function () use ($router) {
+                $router->get('/assets/download/agencies/{agency_id}', ['uses' => 'UserFilesController@downloadByAgency']);
+                $router->get('/assets/download/user-files/{user_id}', ['uses' => 'UserFilesController@download']);
             }
         );
     }

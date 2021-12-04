@@ -21,6 +21,7 @@ class AgenciesController extends Controller
     public function getWithDownload()
     {
         ini_set('max_execution_time', '0');
+        set_time_limit(0);
 
         return response()->json([
             'success' => true,
